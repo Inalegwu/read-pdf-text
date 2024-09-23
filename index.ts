@@ -24,9 +24,7 @@ function extractPageText(page: pdfjs.PDFPageProxy) {
   return ResultAsync.fromPromise(
     page
       .getTextContent()
-      .then((text) =>
-        'str' in text ? (text.str as string) : 'lorem ipsum dolor sit amet',
-      ),
+      .then((text) => ('str' in text ? (text.str as string) : ' ')),
     (error) => `Error extracting text ${error}`,
   );
 }
