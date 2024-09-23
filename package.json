@@ -1,0 +1,19 @@
+{
+  "name": "test-pdf",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.2",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "neverthrow": "^8.0.0",
+    "pdfjs-dist": "^4.6.82"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome"
+  ]
+}
