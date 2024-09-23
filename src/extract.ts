@@ -3,7 +3,7 @@ import * as fs from 'node:fs';
 import * as pdfjs from 'pdfjs-dist';
 
 pdfjs.GlobalWorkerOptions.workerSrc = import.meta.resolve(
-  './node_modules/pdfjs-dist/build/pdf.worker.min.mjs',
+  '../node_modules/pdfjs-dist/build/pdf.worker.min.mjs',
 );
 
 function readFile(path: string) {
@@ -29,7 +29,7 @@ function extractPageText(page: pdfjs.PDFPageProxy) {
   );
 }
 
-async function extractTextFromPDF(pdfPath: string) {
+export async function extractTextFromPDF(pdfPath: string) {
   return (await readFile(pdfPath).asyncAndThen(loadPDFData))
     .asyncAndThen((pdf) => {
       const pagePromises: ResultAsync<string, string>[] = [];
@@ -47,10 +47,3 @@ async function extractTextFromPDF(pdfPath: string) {
     })
     .map((pageTexts) => pageTexts.join('\n'));
 }
-
-extractTextFromPDF('./file2.pdf').then((result) =>
-  result.match(
-    (text) => console.log(`Extracted text ${text}`),
-    (error) => console.error(`Error ${error}`),
-  ),
-);
